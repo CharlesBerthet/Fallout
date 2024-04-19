@@ -20,10 +20,15 @@ public class Main {
         }
 
         CombinaisonAbri combinaisonAbri = new CombinaisonAbri();
-        personnages.get(0).equiperArmure(combinaisonAbri);
-
         FatMan fatMan = new FatMan();
-        personnages.get(0).equiperArme(fatMan);
+        System.out.println(combinaisonAbri);
+        System.out.println(fatMan);
+
+        personnages.get(0).ajouterALInventaire(combinaisonAbri);
+        personnages.get(0).ajouterALInventaire(fatMan);
+
+        personnages.get(0).afficherInventaire();
+
 
     }
 }

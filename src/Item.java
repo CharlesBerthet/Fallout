@@ -8,4 +8,25 @@ public abstract class Item {
         this.poids = poids;
         this.prix = prix;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getPoids() {
+        return poids;
+    }
+
+    public int getPrix() {
+        return prix;
+    }
+
+    @Override
+    public String toString() {
+        if (this instanceof IValuable) {
+            return this.description + " - Valeur : " + ((IValuable) this).aPourValeur();
+        } else {
+            return this.description;
+        }
+    }
 }

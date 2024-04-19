@@ -1,5 +1,9 @@
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Comparator;
 
 public abstract class Personnage {
 
@@ -7,6 +11,7 @@ public abstract class Personnage {
     private Map<Competence, Integer> competences;
     private Arme arme;
     private Armure armure;
+    private Set<Item> inventaire = new HashSet<>();
 
     public Personnage(String nom) {
         this.nom = nom;
@@ -63,6 +68,47 @@ public abstract class Personnage {
     }
     public void equiperArmure(Armure armure) {
         this.armure = armure;
+    }
+
+
+    public void ajouterALInventaire(Item item) {
+        this.inventaire.add(item);
+    }
+
+    public void afficherInventaire() {
+        System.out.println("Inventaire de " + this.getNom());
+        System.out.println("______________________________");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Trier l'inventaire par :"); 
+        System.out.println("Arme / Armure / Autres (1/2/3)");
+        System.out.println("Poids / Prix / Valeur (W/P/V)");
+        String reponse = sc.nextLine();
+
+        Comparator comparator = null;
+        switch (reponse.charAt(1)) {
+            case 'W':
+                comparator = new ComparatorPoids();
+                break;
+            case 'P':
+                comparator = new ComparatorPrix();
+                break;
+            case 'V':
+                comparator = new ComparatorValeur();
+                break;
+        }
+
+        this.inventaire.stream().filter(e->{
+            switch (reponse.charAt(0)) {
+                case '1':
+                    return e instanceof Arme;
+                case '2':
+                    return e instanceof Armure;
+                case '3':
+                    return !(e instanceof Arme) && !(e instanceof Armure);
+                default:
+                    return true;
+            }
+        }).sorted(comparator).forEach(System.out::println);
     }
 
 }

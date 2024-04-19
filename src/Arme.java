@@ -1,4 +1,4 @@
-abstract class Arme extends Item{
+abstract class Arme extends Item implements IValuable{
 
     private int degats;
 
@@ -9,5 +9,10 @@ abstract class Arme extends Item{
 
     public int getDegats() {
         return degats;
+    }
+
+    @Override
+    public int aPourValeur() {
+        return (int) (this.getDegats());
     }
 }

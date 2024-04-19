@@ -1,4 +1,4 @@
-public class Armure extends Item{
+abstract class Armure extends Item implements IValuable{
 
     private int protection;
 
@@ -9,6 +9,11 @@ public class Armure extends Item{
 
     public int getProtection() {
         return protection;
+    }
+
+    @Override
+    public int aPourValeur() {
+        return (int) (this.getProtection());
     }
 
 }
