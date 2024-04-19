@@ -38,7 +38,7 @@ public class Personnage {
         }
         this.agilite = agiliteTemp;
     }
-    
+
     public int getIntelligence() {
         return intelligence;
     }
