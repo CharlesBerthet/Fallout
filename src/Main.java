@@ -29,6 +29,10 @@ public class Main {
 
         personnages.get(0).afficherInventaire();
 
+        System.out.println("Points de vie du personnage : " + personnages.get(0).getPointsDeVie());
+        System.out.println("Points de vie du personnage : " + personnages.get(1).getPointsDeVie());
 
+        ExplorationGenerator exploration = new ExplorationGenerator();
+        exploration.explorer(personnages.get(0));
     }
 }

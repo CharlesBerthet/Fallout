@@ -12,11 +12,15 @@ public abstract class Personnage {
     private Arme arme;
     private Armure armure;
     private Set<Item> inventaire = new HashSet<>();
+    private int pointsDeVie;
+    private int niveauExperience = 10;
+    private int experience = 0;
 
     public Personnage(String nom) {
         this.nom = nom;
         this.competences = new EnumMap<>(Competence.class);
         initialiserCompetences();
+        this.pointsDeVie = 100;
     }
 
 
@@ -70,6 +74,14 @@ public abstract class Personnage {
         this.armure = armure;
     }
 
+    public int getDegats() {
+        if (this.arme == null) {
+            return 10;
+        }else{
+            return 10 + this.arme.getDegats();
+        }
+    }
+
 
     public void ajouterALInventaire(Item item) {
         this.inventaire.add(item);
@@ -109,6 +121,21 @@ public abstract class Personnage {
                     return true;
             }
         }).sorted(comparator).forEach(System.out::println);
+    }
+
+    public int getPointsDeVie() {
+        return this.pointsDeVie + getNiveauCompetence(Competence.FORCE)*10;
+    }
+    public void setPointsDeVie(int pointsDeVie) {
+        this.pointsDeVie = pointsDeVie;
+    }
+
+    public void augmenterExperience(int experience) {
+        this.experience += experience;
+        if (this.experience >= this.niveauExperience) {
+            this.niveauExperience = (int)(Math.pow(niveauExperience, 0.3));
+            this.experience = 0;
+        }
     }
 
 }
