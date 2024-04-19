@@ -9,4 +9,5 @@ public class Mercenaire extends Personnage{
     public void attaqueSpeciale() {
         System.out.println(getNom() + " utilise son attaque spéciale : Tir de précision");
     }
+
 }

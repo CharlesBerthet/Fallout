@@ -5,17 +5,21 @@ public abstract class Personnage {
 
     private String nom;
     private Map<Competence, Integer> competences;
+    private Arme arme;
+    private Armure armure;
 
     public Personnage(String nom) {
         this.nom = nom;
         this.competences = new EnumMap<>(Competence.class);
         initialiserCompetences();
-        this.attaqueSpeciale();
     }
 
 
     public String getNom() {
         return nom;
+    }
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     private void initialiserCompetences() {
@@ -46,5 +50,19 @@ public abstract class Personnage {
     }
 
     public abstract void attaqueSpeciale();
+
+    public Arme getArme() {
+        return arme;
+    }
+    public void equiperArme(Arme arme) {
+        this.arme = arme;
+    }
+
+    public Armure getArmure() {
+        return armure;
+    }
+    public void equiperArmure(Armure armure) {
+        this.armure = armure;
+    }
 
 }

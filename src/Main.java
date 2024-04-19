@@ -1,49 +1,29 @@
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
+        List<Personnage> personnages = new ArrayList<>();
 
-        String nomPersonnage = "";
+        personnages.add(new Mercenaire("John"));
+        personnages.add(new SuperMutant("Gronk"));
+        personnages.add(new Scientifique("Dr. Smith"));
 
-        while (nomPersonnage.length() < 3) {
-            System.out.println("Entrez le nom de votre personnage (3 caractères minimum) : ");
-            nomPersonnage = sc.nextLine();
+        for (Personnage personnage : personnages) {
+            System.out.println("Nom du personnage : " + personnage.getNom());
+            personnage.afficherCompetences();
+            personnage.attaqueSpeciale();
+            System.out.println();
         }
 
-        Personnage personnage = new Personnage(nomPersonnage);
+        CombinaisonAbri combinaisonAbri = new CombinaisonAbri();
+        personnages.get(0).equiperArmure(combinaisonAbri);
 
-        int pointsRestant = 25;
-        while (pointsRestant > 0) {
-            try {
-                System.out.println("Points restants : " + pointsRestant);
-                System.out.println("Entrez la compétence à améliorer : ");
-                for (int index = 0; index < Competence.values().length; index++) {
-                    System.out.println(String.format("%d. %s", index + 1, Competence.values()[index]));
-                }
-
-                int choix = sc.nextInt();
-
-                if (choix < 1 || choix > Competence.values().length) {
-                    throw new IllegalArgumentException("Veuillez choisir un nombre entre 1 et " + Competence.values().length + " : ");
-                }
-                Competence competenceAChoisir = Competence.values()[choix - 1];
-                System.out.println("Combien de points voulez-vous ajouter à " + competenceAChoisir + " ?");
-                int points = sc.nextInt();
-
-                try {
-                    personnage.augmenterCompetence(competenceAChoisir, points);
-                    pointsRestant -= points;
-                } catch (IllegalArgumentException e) {
-                    System.err.println("\033[0;31m" + e.getMessage() + "\033[0m");
-                }
-
-            } catch (IllegalArgumentException e) {
-                System.err.println("\033[0;31m" + e.getMessage() + "\033[0m");
-            }
-        }
-        personnage.afficherCompetences();
+        FatMan fatMan = new FatMan();
+        personnages.get(0).equiperArme(fatMan);
 
     }
 }
