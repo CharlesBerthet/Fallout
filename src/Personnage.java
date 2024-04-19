@@ -1,7 +1,7 @@
 import java.util.EnumMap;
 import java.util.Map;
 
-public class Personnage {
+public abstract class Personnage {
 
     private String nom;
     private Map<Competence, Integer> competences;
@@ -10,6 +10,7 @@ public class Personnage {
         this.nom = nom;
         this.competences = new EnumMap<>(Competence.class);
         initialiserCompetences();
+        this.attaqueSpeciale();
     }
 
 
@@ -43,5 +44,7 @@ public class Personnage {
             System.out.println(String.format("%-10s \t niveau : %d", competence, competences.get(competence)));
         }
     }
+
+    public abstract void attaqueSpeciale();
 
 }
