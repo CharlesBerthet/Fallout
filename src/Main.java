@@ -1,3 +1,11 @@
+import WasteLand.Characters.Mercenaire;
+import WasteLand.Characters.Personnage;
+import WasteLand.Characters.Scientifique;
+import WasteLand.Characters.SuperMutant;
+import WasteLand.Generators.ExplorationGenerator;
+import WasteLand.Items.Armes.FatMan;
+import WasteLand.Items.Armures.CombinaisonAbri;
+
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
