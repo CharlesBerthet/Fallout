@@ -1,0 +1,84 @@
+@startuml
+(*) --> "
+{{
+salt
+{+
+<b>Identité
+Nom | "Héro"
+Classe | ^Guerrier^
+[Suivant]
+}
+}}
+" as begin
+!$foo  = " <b>Carte\nInventaire\nCompétences\nQuêtes"
+
+
+
+
+begin -right-> "
+{{
+salt
+{+{/<b>Carte\nInventaire\nCompétences\nQuêtes}|{
+<b>Carte
+<img:https://i.postimg.cc/XnXPbFSq/map.png?dl=1>
+}
+}
+}
+}}
+" as map
+
+map -down-> "
+{{
+salt
+{+{/Carte\n<b>Inventaire\nCompétences\nQuêtes}|{
+    {/ <b>Armes | Armures | Consommables  }
+{
+{T+
++Nom        | Dégats    | Valeur
++ Carabine de fortune        | 7  | 30
++ Pistolet     | 20   | 150
+}
+}
+}
+}
+
+}}
+" as inventory
+
+inventory -down->   "
+{{
+salt
+{+{/Carte\nInventaire\n<b>Compétences\nQuêtes}|{
+<b>Compétences S.P.E.C.I.A.L.
+Strengh | "5"
+Perception | "5"
+Endurance | "5"
+Charisma | "5"
+Intelligence | "5"
+Agility | "5"
+Luck | "5"
+
+Il vous reste <b>5</b> points à répartir
+
+[Suivant]
+}
+}
+}}
+" as special
+
+special -down->   "
+{{
+salt
+{+{/Carte\nInventaire\n<b>Compétences\nQuêtes}|{
+{T
++ -        
++ Didacticiel
+++ <s>Attribuez vos premiers points S.P.E.C.I.A.L</s>
+++ Explorez le monde
+
+}
+}
+}
+}}
+" as quest
+@enduml
